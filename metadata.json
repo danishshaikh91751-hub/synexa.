@@ -1,0 +1,6 @@
+{
+  "name": "Synexa",
+  "description": "Bilingual Marathi-English AI learning interface with interactive concept explanations, voice explanation evaluation, vocabulary flashcards, quizzes, and progress analytics.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

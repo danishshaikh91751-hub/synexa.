@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&amp;family=Noto+Sans+Devanagari:wght@700;900&amp;family=Noto+Sans+Tamil:wght@700;900&amp;family=Noto+Sans+Gujarati:wght@700;900&amp;display=swap');
+      
+      .brand-title-d {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 800;
+      }
+      .brand-tagline-d {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 600;
+        font-style: italic;
+      }
+      .bubble-text-en-d {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+      .bubble-text-hi-d {
+        font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+      .bubble-text-mr-d {
+        font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+      .bubble-text-gu-d {
+        font-family: 'Noto Sans Gujarati', 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+      .bubble-text-ta-d {
+        font-family: 'Noto Sans Tamil', 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+    </style>
+
+    <!-- Gradients -->
+    <linearGradient id="ringGradD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="35%" stop-color="#60A5FA"/>
+      <stop offset="70%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#E879F9"/>
+    </linearGradient>
+
+    <linearGradient id="bulbGradD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#0369A1" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="brainGlowD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A5B4FC"/>
+      <stop offset="50%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+
+    <linearGradient id="bookTopCoverD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="bookTopSpineD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+
+    <linearGradient id="bookBottomCoverD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </linearGradient>
+    <linearGradient id="bookBottomSpineD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#6B21A8"/>
+    </linearGradient>
+
+    <linearGradient id="bubbleEnD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="bubbleHiD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="bubbleMrD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="bubbleGuD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+    <linearGradient id="bubbleTaD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+
+    <linearGradient id="xSlash1D" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+    <linearGradient id="xSlash2D" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#67E8F9"/>
+    </linearGradient>
+
+    <filter id="softShadowD" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.4" flood-color="#000000"/>
+    </filter>
+  </defs>
+
+  <!-- CIRCLE CONTAINER EMBLEM -->
+  <g id="EmblemD" transform="translate(0, 10)" filter="url(#softShadowD)">
+    <!-- Outer Circular Framing Ring Arc -->
+    <path d="M 195 440 
+             A 255 255 0 1 1 605 440 
+             C 615 470 590 510 550 545
+             C 640 480 660 380 645 280
+             C 620 120 480 45 340 55
+             C 210 65 140 160 145 295
+             C 148 375 170 420 195 440 Z" 
+          fill="url(#ringGradD)"/>
+
+    <!-- Light Bulb Rays -->
+    <g stroke="#FBBF24" stroke-width="4.5" stroke-linecap="round" opacity="0.95">
+      <line x1="400" y1="145" x2="400" y2="115" />
+      <line x1="340" y1="165" x2="310" y2="140" />
+      <line x1="460" y1="165" x2="490" y2="140" />
+      <line x1="500" y1="215" x2="535" y2="205" />
+      <line x1="300" y1="215" x2="265" y2="205" />
+    </g>
+
+    <!-- LIGHT BULB -->
+    <g transform="translate(0, 0)">
+      <circle cx="400" cy="275" r="68" fill="url(#bulbGradD)" stroke="#38BDF8" stroke-width="4.5" />
+      
+      <path d="M 372 325 L 372 355 C 372 360 376 364 382 364 L 418 364 C 424 364 428 360 428 355 L 428 325 Z" 
+            fill="#0F172A" stroke="#38BDF8" stroke-width="4" />
+      
+      <line x1="373" y1="337" x2="427" y2="337" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="374" y1="347" x2="426" y2="347" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="378" y1="357" x2="422" y2="357" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- BRAIN INSIDE BULB -->
+      <g transform="translate(400, 275) scale(0.82)">
+        <path d="M -4 -38 C -18 -38 -32 -26 -32 -10 C -44 -6 -48 12 -40 24 C -46 36 -34 50 -20 50 C -10 50 -4 44 -4 38 Z" fill="url(#brainGlowD)" />
+        <path d="M 4 -38 C 18 -38 32 -26 32 -10 C 44 -6 48 12 40 24 C 46 36 34 50 20 50 C 10 50 4 44 4 38 Z" fill="url(#brainGlowD)" />
+        <path d="M -16 -20 C -22 -14 -22 -4 -16 2 C -8 6 -12 18 -22 22" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        <path d="M 16 -20 C 22 -14 22 -4 16 2 C 8 6 12 18 22 22" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        <path d="M -8 -8 C -14 4 -2 16 -8 30" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        <path d="M 8 -8 C 14 4 2 16 8 30" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+      </g>
+    </g>
+
+    <!-- 3D STACKED BOOKS -->
+    <g id="BooksD" transform="translate(0, 0)">
+      <ellipse cx="400" cy="528" rx="140" ry="24" fill="#000000" opacity="0.4"/>
+
+      <!-- Purple Book Bottom Pages -->
+      <path d="M 390 495 L 490 455 C 496 453 502 458 502 464 L 498 495 C 498 500 492 506 486 508 L 390 545 Z" 
+            fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+      <path d="M 395 504 L 492 467 M 395 514 L 492 477 M 395 524 L 492 487 M 395 534 L 492 497" 
+            stroke="#94A3B8" stroke-width="1.2"/>
+
+      <!-- Purple Book Spine -->
+      <path d="M 292 475 C 285 480 285 495 292 505 L 390 545 L 390 515 L 292 475 Z" 
+            fill="url(#bookBottomSpineD)" stroke="#581C87" stroke-width="2.5"/>
+
+      <!-- Purple Book Top Cover -->
+      <path d="M 292 475 L 390 515 L 488 475 L 395 440 Z" 
+            fill="url(#bookBottomCoverD)" stroke="#6B21A8" stroke-width="2.5"/>
+
+      <path d="M 315 485 L 305 515 L 315 510 L 325 515 L 320 488 Z" fill="#FBBF24" />
+
+      <!-- Blue Book Bottom Pages -->
+      <path d="M 390 440 L 485 405 C 490 403 496 407 496 413 L 492 440 C 492 445 487 450 482 452 L 390 485 Z" 
+            fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+      <path d="M 395 448 L 486 416 M 395 458 L 486 426 M 395 468 L 486 436 M 395 478 L 486 446" 
+            stroke="#94A3B8" stroke-width="1.2"/>
+
+      <!-- Blue Book Spine -->
+      <path d="M 308 425 C 302 430 302 442 308 450 L 390 485 L 390 460 L 308 425 Z" 
+            fill="url(#bookTopSpineD)" stroke="#0369A1" stroke-width="2.5"/>
+
+      <!-- Blue Book Top Cover -->
+      <path d="M 308 425 L 390 460 L 482 422 L 400 390 Z" 
+            fill="url(#bookTopCoverD)" stroke="#0284C7" stroke-width="2.5"/>
+
+      <path d="M 320 431 L 320 455" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 330 435 L 330 459" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- 5 LANGUAGE SPEECH BUBBLES -->
+    <g transform="translate(225, 275)">
+      <path d="M -42 -28 C -42 -42 -25 -45 0 -45 C 25 -45 42 -42 42 -28 C 42 -14 25 -10 0 -10 C -12 -10 -24 -8 -32 0 C -30 -6 -32 -10 -36 -12 C -40 -16 -42 -22 -42 -28 Z" fill="url(#bubbleEnD)"/>
+      <text x="0" y="-22" class="bubble-text-en-d" font-size="22" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">EN</text>
+    </g>
+
+    <g transform="translate(225, 375)">
+      <path d="M -38 -25 C -38 -38 -22 -40 0 -40 C 22 -40 38 -38 38 -25 C 38 -12 22 -10 0 -10 C -10 -10 -20 -8 -28 0 C -26 -5 -28 -8 -32 -10 C -36 -14 -38 -19 -38 -25 Z" fill="url(#bubbleHiD)"/>
+      <text x="0" y="-22" class="bubble-text-hi-d" font-size="22" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">हिं</text>
+    </g>
+
+    <g transform="translate(545, 255)">
+      <path d="M 38 -25 C 38 -38 22 -40 0 -40 C -22 -40 -38 -38 -38 -25 C -38 -12 -22 -10 0 -10 C 10 -10 20 -8 28 0 C 26 -5 28 -8 32 -10 C 36 -14 38 -19 38 -25 Z" fill="url(#bubbleMrD)"/>
+      <text x="0" y="-22" class="bubble-text-mr-d" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">म</text>
+    </g>
+
+    <g transform="translate(545, 345)">
+      <path d="M 38 -25 C 38 -38 22 -40 0 -40 C -22 -40 -38 -38 -38 -25 C -38 -12 -22 -10 0 -10 C 10 -10 20 -8 28 0 C 26 -5 28 -8 32 -10 C 36 -14 38 -19 38 -25 Z" fill="url(#bubbleGuD)"/>
+      <text x="0" y="-22" class="bubble-text-gu-d" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">ગુ</text>
+    </g>
+
+    <g transform="translate(555, 445)">
+      <path d="M 45 -25 C 45 -38 26 -40 0 -40 C -26 -40 -45 -38 -45 -25 C -45 -12 -26 -10 0 -10 C 12 -10 24 -8 34 0 C 31 -5 34 -8 38 -10 C 43 -14 45 -19 45 -25 Z" fill="url(#bubbleTaD)"/>
+      <text x="0" y="-23" class="bubble-text-ta-d" font-size="18" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">தமிழ்</text>
+    </g>
+  </g>
+
+  <!-- TYPOGRAPHY SECTION -->
+  <g id="BrandingTextD" transform="translate(400, 645)" text-anchor="middle">
+    <g transform="translate(0, 0)">
+      <text x="-95" y="0" class="brand-title-d" font-size="88" fill="#FFFFFF">Syn</text>
+      
+      <path d="M 85 -54 C 92 -40 108 -18 128 0 L 110 0 C 92 -16 80 -36 72 -54 Z" fill="url(#xSlash1D)"/>
+      <path d="M 125 -54 C 118 -40 85 0 65 0 L 78 0 C 96 -14 116 -38 135 -54 Z" fill="url(#xSlash2D)"/>
+
+      <text x="50" y="0" class="brand-title-d" font-size="88" fill="#FFFFFF">e</text>
+      <text x="165" y="0" class="brand-title-d" font-size="88" fill="#FFFFFF">a</text>
+    </g>
+
+    <text x="0" y="44" class="brand-tagline-d" font-size="23" fill="#E2E8F0" letter-spacing="0.5">
+      Learning Beyond Language
+    </text>
+
+    <path d="M -140 70 Q 0 85 140 70" stroke="url(#ringGradD)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

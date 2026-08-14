@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 50 600 550" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&amp;family=Noto+Sans+Devanagari:wght@800;900&amp;family=Noto+Sans+Tamil:wght@800;900&amp;family=Noto+Sans+Gujarati:wght@800;900&amp;display=swap');
+      .fav-text-en { font-family: 'Poppins', sans-serif; font-weight: 800; }
+      .fav-text-hi { font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif; font-weight: 800; }
+      .fav-text-mr { font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif; font-weight: 800; }
+      .fav-text-gu { font-family: 'Noto Sans Gujarati', 'Poppins', sans-serif; font-weight: 800; }
+      .fav-text-ta { font-family: 'Noto Sans Tamil', 'Poppins', sans-serif; font-weight: 800; }
+    </style>
+    <linearGradient id="favRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#C026D3"/>
+    </linearGradient>
+    <linearGradient id="favBrain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring Arc -->
+  <path d="M 195 440 A 255 255 0 1 1 605 440 C 615 470 590 510 550 545 C 640 480 660 380 645 280 C 620 120 480 45 340 55 C 210 65 140 160 145 295 C 148 375 170 420 195 440 Z" fill="url(#favRing)"/>
+
+  <!-- Bulb Rays -->
+  <g stroke="#F59E0B" stroke-width="6" stroke-linecap="round">
+    <line x1="400" y1="145" x2="400" y2="115" />
+    <line x1="340" y1="165" x2="310" y2="140" />
+    <line x1="460" y1="165" x2="490" y2="140" />
+    <line x1="500" y1="215" x2="535" y2="205" />
+    <line x1="300" y1="215" x2="265" y2="205" />
+  </g>
+
+  <!-- Light Bulb -->
+  <circle cx="400" cy="275" r="70" fill="#E0F2FE" stroke="#0284C7" stroke-width="6" />
+  <path d="M 372 325 L 372 355 L 428 355 L 428 325 Z" fill="#E0F2FE" stroke="#0284C7" stroke-width="5" />
+
+  <!-- Brain in Bulb -->
+  <g transform="translate(400, 275) scale(0.85)">
+    <path d="M -4 -38 C -18 -38 -32 -26 -32 -10 C -44 -6 -48 12 -40 24 C -46 36 -34 50 -20 50 C -10 50 -4 44 -4 38 Z" fill="url(#favBrain)" />
+    <path d="M 4 -38 C 18 -38 32 -26 32 -10 C 44 -6 48 12 40 24 C 46 36 34 50 20 50 C 10 50 4 44 4 38 Z" fill="url(#favBrain)" />
+    <path d="M -16 -18 C -22 -12 -22 -4 -16 2" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" />
+    <path d="M 16 -18 C 22 -12 22 -4 16 2" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Books -->
+  <!-- Bottom Book (Purple) -->
+  <path d="M 292 475 L 390 515 L 488 475 L 395 440 Z" fill="#7C3AED" stroke="#4C1D95" stroke-width="3"/>
+  <path d="M 292 475 C 285 480 285 495 292 505 L 390 545 L 390 515 Z" fill="#8B5CF6" stroke="#3B0764" stroke-width="3"/>
+  <path d="M 390 495 L 490 455 L 498 495 L 390 545 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+
+  <!-- Top Book (Blue) -->
+  <path d="M 308 425 L 390 460 L 482 422 L 400 390 Z" fill="#0284C7" stroke="#0369A1" stroke-width="3"/>
+  <path d="M 308 425 C 302 430 302 442 308 450 L 390 485 L 390 460 Z" fill="#38BDF8" stroke="#0C4A6E" stroke-width="3"/>
+  <path d="M 390 440 L 485 405 L 492 440 L 390 485 Z" fill="#FFFBEB" stroke="#D97706" stroke-width="2"/>
+
+  <!-- Bubbles -->
+  <!-- EN -->
+  <circle cx="225" cy="250" r="32" fill="#0284C7" />
+  <text x="225" y="258" class="fav-text-en" font-size="22" fill="#FFFFFF" text-anchor="middle">EN</text>
+
+  <!-- हिं -->
+  <circle cx="225" cy="350" r="30" fill="#6366F1" />
+  <text x="225" y="358" class="fav-text-hi" font-size="22" fill="#FFFFFF" text-anchor="middle">हिं</text>
+
+  <!-- म -->
+  <circle cx="545" cy="235" r="30" fill="#F59E0B" />
+  <text x="545" y="244" class="fav-text-mr" font-size="24" fill="#FFFFFF" text-anchor="middle">म</text>
+
+  <!-- ગુ -->
+  <circle cx="545" cy="325" r="30" fill="#14B8A6" />
+  <text x="545" y="334" class="fav-text-gu" font-size="24" fill="#FFFFFF" text-anchor="middle">ગુ</text>
+
+  <!-- தமிழ் -->
+  <circle cx="555" cy="425" r="32" fill="#E11D48" />
+  <text x="555" y="432" class="fav-text-ta" font-size="16" fill="#FFFFFF" text-anchor="middle">தமிழ்</text>
+</svg>
