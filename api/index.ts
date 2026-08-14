@@ -1,20 +1,17 @@
 import express from "express";
-import path from "path";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
 
 app.use(express.json({ limit: "10mb" }));
 
 function getGenAI() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is not configured.");
+    throw new Error("GEMINI_API_KEY is not configured in environment variables.");
   }
   return new GoogleGenAI({
     apiKey,
@@ -27,7 +24,7 @@ function getGenAI() {
 }
 
 async function callGeminiWithFallback(ai: GoogleGenAI, contents: any, config?: any) {
-  const candidateModels = ["gemini-3.6-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"];
+  const candidateModels = ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"];
   let lastErr = null;
   for (const modelName of candidateModels) {
     try {
@@ -68,22 +65,18 @@ function extractJsonSubstring(str: string): string | null {
 
   for (let i = start; i < str.length; i++) {
     const char = str[i];
-
     if (escaped) {
       escaped = false;
       continue;
     }
-
     if (char === '\\') {
       escaped = true;
       continue;
     }
-
     if (char === '"') {
       inString = !inString;
       continue;
     }
-
     if (!inString) {
       if (char === '{' || char === '[') {
         depth++;
@@ -95,7 +88,6 @@ function extractJsonSubstring(str: string): string | null {
       }
     }
   }
-
   return null;
 }
 
@@ -123,6 +115,15 @@ function safeJsonParse(text: string, fallback: any = {}) {
     return fallback;
   }
 }
+
+// Health check
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    hasApiKey: !!process.env.GEMINI_API_KEY,
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Endpoint to evaluate user's explanation of a topic using Gemini
 app.post("/api/evaluate-explanation", async (req, res) => {
@@ -384,8 +385,6 @@ CRITICAL MANDATES:
    - examReadyEnglishAnswer: Precise 1-sentence English exam definition for full marks
 5. Provide 1 quick practice check question in ${targetLangName}.
 
-DO NOT use Stomata, Photosynthesis or any other unrelated topic unless the student explicitly asks about them.
-
 Return JSON:
 {
   "identifiedSubject": "Science" or "Mathematics" or "Social Studies",
@@ -453,7 +452,7 @@ Simple Mode: ${isSimpleMode ? 'ACTIVE (Use simple words and easy choices)' : 'OF
 CRITICAL INSTRUCTIONS:
 1. Create 3 high-quality conceptual questions specifically about "${activeTopic}".
 2. Write "questionMarathi", "labelMarathi", and "explanationMarathi" directly in ${targetLangName}.
-3. Write "questionEnglish", "labelEnglish", and "explanationEnglish" in English (if target language is English, make them identical).
+3. Write "questionEnglish", "labelEnglish", and "explanationEnglish" in English.
 4. For options, make 1 option correct ("correctKey") and 3 options plausible distractors.
 
 Respond with JSON matching this structure:
@@ -510,63 +509,6 @@ Respond with JSON matching this structure:
           explanationEnglish: `Option A accurately summarizes the core principle of ${activeTopic}.`,
         },
       ],
-      hi: [
-        {
-          id: "q1",
-          topic: activeTopic,
-          questionNumber: 1,
-          totalQuestions: 3,
-          questionMarathi: `${activeTopic} के संबंध में कौन सा कथन सही है?`,
-          questionEnglish: `Which statement is correct regarding ${activeTopic}?`,
-          options: [
-            { key: "A", labelMarathi: "मुख्य सिद्धांत और परिभाषा (विकल्प A)", labelEnglish: "Primary concept definition" },
-            { key: "B", labelMarathi: "द्वितीयक अवलोकन (विकल्प B)", labelEnglish: "Secondary observation" },
-            { key: "C", labelMarathi: "असंबंधित अवधारणा (विकल्प C)", labelEnglish: "Unrelated concept" },
-            { key: "D", labelMarathi: "गलत कथन (विकल्प D)", labelEnglish: "Incorrect statement" },
-          ],
-          correctKey: "A",
-          explanationMarathi: `विकल्प A ${activeTopic} के मुख्य सिद्धांत का सटीक रूप से वर्णन करता है।`,
-          explanationEnglish: `Option A accurately describes the key principle of ${activeTopic}.`,
-        },
-      ],
-      gu: [
-        {
-          id: "q1",
-          topic: activeTopic,
-          questionNumber: 1,
-          totalQuestions: 3,
-          questionMarathi: `${activeTopic} ના સંદર્ભમાં કયું વિધાન સાચું છે?`,
-          questionEnglish: `Which statement is correct regarding ${activeTopic}?`,
-          options: [
-            { key: "A", labelMarathi: "મુખ્ય સિદ્ધાંત અને વ્યાખ્યા (વિકલ્પ A)", labelEnglish: "Primary concept definition" },
-            { key: "B", labelMarathi: "ગૌણ અવલોકન (વિકલ્પ B)", labelEnglish: "Secondary observation" },
-            { key: "C", labelMarathi: "અસંબંધિત બાબત (વિકલ્પ C)", labelEnglish: "Unrelated matter" },
-            { key: "D", labelMarathi: "ખોટું વિધાન (વિકલ્પ D)", labelEnglish: "Incorrect statement" },
-          ],
-          correctKey: "A",
-          explanationMarathi: `વિકલ્પ A ${activeTopic} ના મુખ્ય સિદ્ધાંતને યોગ્ય રીતે સ્પષ્ટ કરે છે.`,
-          explanationEnglish: `Option A correctly explains the core principle of ${activeTopic}.`,
-        },
-      ],
-      ta: [
-        {
-          id: "q1",
-          topic: activeTopic,
-          questionNumber: 1,
-          totalQuestions: 3,
-          questionMarathi: `${activeTopic} பற்றிய சரியான கூற்று எது?`,
-          questionEnglish: `Which statement is correct regarding ${activeTopic}?`,
-          options: [
-            { key: "A", labelMarathi: "முக்கிய கருத்து வரைவிலக்கணம் (விருப்பம் A)", labelEnglish: "Primary concept definition" },
-            { key: "B", labelMarathi: "இரண்டாம் நிலை உற்றுநோக்கல் (விருப்பம் B)", labelEnglish: "Secondary observation" },
-            { key: "C", labelMarathi: "தொடர்பற்ற கருத்து (விருப்பம் C)", labelEnglish: "Unrelated concept" },
-            { key: "D", labelMarathi: "தவறான கூற்று (விருப்பம் D)", labelEnglish: "Incorrect statement" },
-          ],
-          correctKey: "A",
-          explanationMarathi: `விருப்பம் A ${activeTopic} இன் முக்கிய தத்துவத்தை துல்லியமாக விளக்குகிறது.`,
-          explanationEnglish: `Option A accurately explains the main principle of ${activeTopic}.`,
-        },
-      ],
       mr: [
         {
           id: "q1",
@@ -598,7 +540,7 @@ app.post("/api/tts", async (req, res) => {
     const { text } = req.body;
     const ai = getGenAI();
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-tts-preview",
+      model: "gemini-2.5-flash",
       contents: [{ parts: [{ text: text || "Hello! Welcome to Synexa." }] }],
       config: {
         responseModalities: ["AUDIO" as any],
@@ -621,24 +563,4 @@ app.post("/api/tts", async (req, res) => {
   }
 });
 
-async function startServer() {
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
-    });
-  }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
-  });
-}
-
-startServer();
+export default app;
