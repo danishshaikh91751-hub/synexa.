@@ -27,15 +27,19 @@ function getGenAI() {
 }
 
 async function callGeminiWithFallback(ai: GoogleGenAI, contents: any, config?: any) {
-  const candidateModels = ["gemini-3.6-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"];
+  const candidateModels = ["gemini-3.1-flash-lite", "gemini-3.1-flash-lite-preview", "gemini-3.7-flash"];
   let lastErr = null;
   for (const modelName of candidateModels) {
     try {
-      const res = await ai.models.generateContent({
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout with ${modelName}`)), 9000)
+      );
+      const generatePromise = ai.models.generateContent({
         model: modelName,
         contents,
         config,
       });
+      const res: any = await Promise.race([generatePromise, timeoutPromise]);
       if (res && res.text) {
         return res;
       }
@@ -124,6 +128,16 @@ function safeJsonParse(text: string, fallback: any = {}) {
   }
 }
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    hasApiKey: !!process.env.GEMINI_API_KEY,
+    keyLength: process.env.GEMINI_API_KEY ? process.env.GEMINI_API_KEY.length : 0,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Endpoint to evaluate user's explanation of a topic using Gemini
 app.post("/api/evaluate-explanation", async (req, res) => {
   try {
@@ -154,31 +168,6 @@ Respond with JSON matching this exact structure:
 
     const response = await callGeminiWithFallback(ai, prompt, {
       responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          understandingPercentage: { type: Type.NUMBER },
-          titleMarathi: { type: Type.STRING },
-          titleEnglish: { type: Type.STRING },
-          whatYouGotRight: {
-            type: Type.ARRAY,
-            items: { type: Type.STRING },
-          },
-          whatYouMissed: {
-            type: Type.ARRAY,
-            items: { type: Type.STRING },
-          },
-          focusArea: { type: Type.STRING },
-        },
-        required: [
-          "understandingPercentage",
-          "titleMarathi",
-          "titleEnglish",
-          "whatYouGotRight",
-          "whatYouMissed",
-          "focusArea",
-        ],
-      },
     });
 
     const data = safeJsonParse(response.text || "{}");

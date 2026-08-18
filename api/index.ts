@@ -24,15 +24,19 @@ function getGenAI() {
 }
 
 async function callGeminiWithFallback(ai: GoogleGenAI, contents: any, config?: any) {
-  const candidateModels = ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"];
+  const candidateModels = ["gemini-3.1-flash-lite", "gemini-3.1-flash-lite-preview", "gemini-3.7-flash"];
   let lastErr = null;
   for (const modelName of candidateModels) {
     try {
-      const res = await ai.models.generateContent({
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout with ${modelName}`)), 9000)
+      );
+      const generatePromise = ai.models.generateContent({
         model: modelName,
         contents,
         config,
       });
+      const res: any = await Promise.race([generatePromise, timeoutPromise]);
       if (res && res.text) {
         return res;
       }
@@ -155,31 +159,6 @@ Respond with JSON matching this exact structure:
 
     const response = await callGeminiWithFallback(ai, prompt, {
       responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          understandingPercentage: { type: Type.NUMBER },
-          titleMarathi: { type: Type.STRING },
-          titleEnglish: { type: Type.STRING },
-          whatYouGotRight: {
-            type: Type.ARRAY,
-            items: { type: Type.STRING },
-          },
-          whatYouMissed: {
-            type: Type.ARRAY,
-            items: { type: Type.STRING },
-          },
-          focusArea: { type: Type.STRING },
-        },
-        required: [
-          "understandingPercentage",
-          "titleMarathi",
-          "titleEnglish",
-          "whatYouGotRight",
-          "whatYouMissed",
-          "focusArea",
-        ],
-      },
     });
 
     const data = safeJsonParse(response.text || "{}");
